@@ -25,6 +25,7 @@ i{
   font-family: "HackerDeath";
   font: "HackerDeath";
   font-size: 80px;
+  color: gray;
 }
 n{
   font-family: "HackerBOLD";
@@ -33,7 +34,4 @@ n{
 r{
   font-family: "Hacker";
   font: "Hacker";
-}
-m{
-color: red;
 }
