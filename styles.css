@@ -1,0 +1,6 @@
+.circle-image {
+  border-radius: 50%;
+  width: 200px; /* Set the width */
+  height: 200px; /* Set the height */
+  object-fit: cover; /* Ensure the image covers the circle */
+}
