@@ -98,7 +98,7 @@ function copyAllContent() {
     })
     .join(',');
   
-  const wrappedContent = `(${content})`;
+  const wrappedContent = `${content}`;
   
   navigator.clipboard.writeText(wrappedContent).then(() => {
     showToast();
