@@ -16,7 +16,7 @@ function setCookie(name, value, days = 365) {
         const expires = `expires=${date.toUTCString()}`;
         const encodedValue = encodeURIComponent(value);
         // Include Secure and explicit SameSite for GitHub Pages (https://)
-        const cookieString = `${name}=${encodedValue};${expires};path=/;Secure;SameSite=None`;
+        const cookieString = `${name}=${encodedValue};${expires};path=/`;
         document.cookie = cookieString;
         console.log(`Cookie set: ${cookieString}`); // Debug log
         // Check cookie size
@@ -167,8 +167,9 @@ let data = loadData();
 function updateCookie() {
     try {
         const jsonString = JSON.stringify(data);
+        setLocalStorage('array', jsonString);
+        // Only set cookie if localStorage succeeds
         setCookie('array', jsonString);
-        setLocalStorage('array', jsonString); // Save to Local Storage as fallback
     } catch (e) {
         console.error('Failed to update storage:', e);
         showToast('Failed to save data.', true);
