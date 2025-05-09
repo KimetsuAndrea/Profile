@@ -8,26 +8,45 @@ function stringToHex(str) {
   return hex;
 }
 
-// Function to get cookie by name
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
-  return null;
-}
-
-// Function to set cookie
+// Function to set cookie (W3Schools-inspired)
 function setCookie(name, value, days = 365) {
   try {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = `expires=${date.toUTCString()}`;
-    const encodedValue = encodeURIComponent(value); // Encode to handle special characters
-    document.cookie = `${name}=${encodedValue};${expires};path=/;SameSite=Strict`;
-    console.log(`Cookie set: ${name}=${encodedValue}`); // Debug log
+    const encodedValue = encodeURIComponent(value);
+    const cookieString = `${name}=${encodedValue};${expires};path=/;SameSite=Strict`;
+    document.cookie = cookieString;
+    console.log(`Cookie set: ${cookieString}`); // Debug log
+    // Check cookie size
+    if (encodedValue.length > 4000) {
+      console.warn('Cookie size exceeds 4KB, may be truncated by browser');
+    }
+    // Verify cookie was set
+    if (getCookie(name) === encodedValue) {
+      console.log(`Cookie ${name} verified`);
+    } else {
+      console.warn(`Cookie ${name} not set correctly`);
+    }
   } catch (e) {
     console.error('Failed to set cookie:', e);
   }
+}
+
+// Function to get cookie (W3Schools-inspired)
+function getCookie(name) {
+  const nameEQ = `${name}=`;
+  const cookies = document.cookie.split(';');
+  for (let cookie of cookies) {
+    cookie = cookie.trim();
+    if (cookie.startsWith(nameEQ)) {
+      const value = cookie.substring(nameEQ.length);
+      console.log(`Cookie retrieved: ${name}=${value}`); // Debug log
+      return decodeURIComponent(value);
+    }
+  }
+  console.log(`Cookie not found: ${name}`); // Debug log
+  return null;
 }
 
 // Function to load data from cookie or use default
@@ -39,6 +58,8 @@ function loadData() {
       if (Array.isArray(parsed)) {
         console.log('Loaded data from cookie:', parsed); // Debug log
         return parsed;
+      } else {
+        console.error('Cookie data is not an array');
       }
     } catch (e) {
       console.error('Invalid cookie data:', e);
@@ -100,6 +121,7 @@ function updateCookie() {
     setCookie('array', jsonString);
   } catch (e) {
     console.error('Failed to update cookie:', e);
+    showToast('Failed to save data to cookie.', true);
   }
 }
 
@@ -211,7 +233,6 @@ function showToast(message = 'Hex codes and comments copied to clipboard!', isEr
 
 // Initialize display on page load
 window.onload = () => {
-  // Ensure cookie is set with initial data
-  updateCookie(); // Always set cookie on load to ensure data is saved
+  updateCookie(); // Set cookie with loaded/default data
   displayData();
 };
