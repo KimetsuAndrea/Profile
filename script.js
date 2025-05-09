@@ -8,52 +8,7 @@ function stringToHex(str) {
     return hex;
 }
 
-// Function to set cookie
-function setCookie(name, value, days = 365) {
-    try {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        const expires = `expires=${date.toUTCString()}`;
-        const encodedValue = encodeURIComponent(value);
-        // Include Secure and explicit SameSite for GitHub Pages (https://)
-        const cookieString = `${name}=${encodedValue};${expires};path=/`;
-        document.cookie = cookieString;
-        console.log(`Cookie set: ${cookieString}`); // Debug log
-        // Check cookie size
-        if (encodedValue.length > 4000) {
-            console.warn('Cookie size exceeds 4KB, may be truncated. Consider Local Storage.');
-        }
-        // Verify cookie
-        const retrieved = getCookie(name);
-        if (retrieved === encodedValue) {
-            console.log(`Cookie ${name} verified`);
-        } else {
-            console.warn(`Cookie ${name} not set correctly`);
-            showToast('Failed to set cookie. Check browser settings or try Local Storage.', true);
-        }
-    } catch (e) {
-        console.error('Failed to set cookie:', e);
-        showToast('Failed to set cookie. Check browser settings.', true);
-    }
-}
-
-// Function to get cookie
-function getCookie(name) {
-    const nameEQ = `${name}=`;
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-        cookie = cookie.trim();
-        if (cookie.startsWith(nameEQ)) {
-            const value = cookie.substring(nameEQ.length);
-            console.log(`Cookie retrieved: ${name}=${value}`); // Debug log
-            return decodeURIComponent(value);
-        }
-    }
-    console.log(`Cookie not found: ${name}`); // Debug log
-    return null;
-}
-
-// Function to set data in Local Storage (fallback)
+// Function to set data in Local Storage
 function setLocalStorage(name, value) {
     try {
         localStorage.setItem(name, value);
@@ -64,7 +19,7 @@ function setLocalStorage(name, value) {
     }
 }
 
-// Function to get data from Local Storage (fallback)
+// Function to get data from Local Storage
 function getLocalStorage(name) {
     try {
         const value = localStorage.getItem(name);
@@ -80,29 +35,13 @@ function getLocalStorage(name) {
     }
 }
 
-// Function to load data from cookie or Local Storage
+// Function to load data from Local Storage
 function loadData() {
-    // Try cookie first
-    let cookie = getCookie('array');
-    if (cookie) {
+    // Try localStorage first
+    let data = getLocalStorage('array');
+    if (data) {
         try {
-            const parsed = JSON.parse(cookie);
-            if (Array.isArray(parsed)) {
-                console.log('Loaded data from cookie:', parsed);
-                return parsed;
-            } else {
-                console.error('Cookie data is not an array');
-            }
-        } catch (e) {
-            console.error('Invalid cookie data:', e);
-        }
-    }
-
-    // Fallback to Local Storage
-    cookie = getLocalStorage('array');
-    if (cookie) {
-        try {
-            const parsed = JSON.parse(cookie);
+            const parsed = JSON.parse(data);
             if (Array.isArray(parsed)) {
                 console.log('Loaded data from Local Storage:', parsed);
                 return parsed;
@@ -114,7 +53,7 @@ function loadData() {
         }
     }
 
-    // Default data if both fail
+    // Default data if localStorage fails
     console.log('Using default data');
     return [
         { type: "comment", value: "/*!50000concat/**Darknet-Haxor**/*/(0x223e273e3c2f7469746c653e" },
@@ -163,13 +102,11 @@ function loadData() {
 // Global data array
 let data = loadData();
 
-// Function to update cookie and Local Storage
+// Function to update storage (use only localStorage)
 function updateCookie() {
     try {
         const jsonString = JSON.stringify(data);
         setLocalStorage('array', jsonString);
-        // Only set cookie if localStorage succeeds
-        setCookie('array', jsonString);
     } catch (e) {
         console.error('Failed to update storage:', e);
         showToast('Failed to save data.', true);
@@ -281,6 +218,6 @@ function showToast(message = 'Hex codes and comments copied to clipboard!', isEr
 
 // Initialize on page load
 window.onload = () => {
-    updateCookie(); // Set cookie and Local Storage with loaded/default data
+    updateCookie(); // Set Local Storage with loaded/default data
     displayData();
 };
