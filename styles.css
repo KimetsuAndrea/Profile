@@ -37,6 +37,10 @@ h1 {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    position: fixed; /* Changed to fixed for floating effect */
+    top: 20px; /* Distance from top of viewport */
+    right: 20px; /* Distance from right of viewport */
+    z-index: 1000; /* Ensure button stays above content */
 }
 
 .copy-btn:hover {
@@ -98,7 +102,7 @@ h1 {
     border-radius: 4px;
     padding: 16px;
     position: fixed;
-    z-index: 1;
+    z-index: 1001; /* Above fixed button */
     bottom: 30px;
     right: 30px;
     font-size: 16px;
