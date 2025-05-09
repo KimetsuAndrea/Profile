@@ -1,14 +1,14 @@
 @font-face {
   font-family:"Hacker" ;
-  src: url("./Hackglitch.otf");
+  src: url("../fonts/Hackglitch.otf");
 }
 @font-face {
   font-family:"HackerBOLD" ;
-  src: url("./Hacker-Fat.ttf");
+  src: url("../fonts/Hacker-Fat.ttf");
 }
 @font-face {
   font-family:"HackerDeath" ;
-  src: url("./BLOODY.TTF");
+  src: url("../fonts/BLOODY.TTF");
 }
 .circle-image {
   border-radius: 50%;
