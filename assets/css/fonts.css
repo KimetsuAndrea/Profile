@@ -1,36 +1,103 @@
 @font-face {
-  font-family:"Hacker" ;
-  src: url("../fonts/Hackglitch.otf");
+  font-family:"Hackbloody" ;
+  src: url("../fonts/Hackbloody.ttf");
 }
 @font-face {
-  font-family:"HackerBOLD" ;
-  src: url("../fonts/Hacker-Fat.ttf");
+  font-family:"HackerFat" ;
+  src: url("../fonts/HackerFat.ttf");
 }
 @font-face {
-  font-family:"HackerDeath" ;
-  src: url("../fonts/BLOODY.TTF");
+  font-family:"Hackerlout" ;
+  src: url("../fonts/Hackerlout.ttf");
 }
-.circle-image {
+@font-face {
+  font-family:"Hackermotion" ;
+  src: url("../fonts/Hackermotion.ttf");
+}
+@font-face {
+  font-family: "HackeroriginTech";
+  src: url(../fonts/HackeroriginTech.ttf);
+}
+@font-face {
+  font-family: "Hackglitch";
+  src: url(../fonts/Hackglitch.otf);
+}
+@font-face {
+  font-family: "Helveglitch";
+  src: url(../fonts/Helveglitch.ttf);
+}
+@font-face {
+  font-family: "LoveRunsOut";
+  src: url(../fonts/LoveRunsOut.ttf);
+}
+@font-face {
+  font-family: "MCFGlowins";
+  src: url(../fonts/MCFGlowins.ttf);
+}
+@font-face {
+  font-family: "Puncher";
+  src: url(../fonts/Puncher.ttf);
+}
+@font-face {
+  font-family: "TechnoBoard";
+  src: url(../fonts/TechnoBoard.ttf);
+}
+
+
+.circle-image{
   border-radius: 50%;
   width: 200px; 
   height: 200px; 
   text-align: center;
 }
+
 border{
 text-align: center;
 }
 
 
 i{
-  font-family: "HackerDeath";
-  font: "HackerDeath";
+  font-family: "Hackbloody";
+  font: "Hackbloody";
   font-size: 80px;
 }
 n{
-  font-family: "HackerBOLD";
-  font: "HackerBOLD";
+  font-family: "HackerFat";
+  font: "HackerFat";
 }
 r{
-  font-family: "Hacker";
-  font: "Hacker";
+  font-family: "Hackerlout";
+  font: "Hackerlout";
+}
+g{
+  font-family: "Hackermotion";
+  font: "Hackermotion";
+}
+h{
+  font-family: "HackeroriginTech";
+  font: "HackeroriginTech";
+}
+o{
+  font-family: "Hackglitch";
+  font: "Hackglitch";
+}
+k{
+  font-family: "Helveglitch";
+  font: "Helveglitch";
+}
+d{
+  font-family: "LoveRunsOut";
+  font: "LoveRunsOut";
+}
+e{
+  font-family: "MCFGlowins";
+  font: "MCFGlowins";
+}
+v{
+  font-family: "Puncher";
+  font: "Puncher";
+}
+x{
+  font-family: "TechnoBoard";
+  font: "TechnoBoard";
 }
