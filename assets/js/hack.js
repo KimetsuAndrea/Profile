@@ -1,4 +1,4 @@
-<script>
+
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
     canvas.height = window.innerHeight;
@@ -98,4 +98,3 @@
     }
 
     setTimeout(updateProgress, 1000);
-  </script>
